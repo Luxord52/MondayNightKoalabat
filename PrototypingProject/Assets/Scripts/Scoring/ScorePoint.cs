@@ -27,15 +27,22 @@ public class ScorePoint : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnTriggerEnter(Collision collision)
     {
         IncreaseScore(collision.gameObject);
+    }*/
+    private void OnTriggerEnter(Collider other)
+    {
+        IncreaseScore(other.gameObject);
     }
-
     public void IncreaseScore(GameObject player)
     {
         StateManager playerStateManager = player.GetComponent<StateManager>();
         int teamValue = playerStateManager.team;
-        levelManager.ScoreIncreased(teamValue);
+        if (playerStateManager.highestZone == scoreThreshold)
+        {
+            levelManager.ScoreIncreased(teamValue);
+            playerStateManager.ResetZones();
+        }
     }
 }

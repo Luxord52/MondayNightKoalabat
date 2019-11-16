@@ -17,4 +17,17 @@ public class ScoreZone : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        print("Enter Collision");
+        IncreaseZone(collision.gameObject);
+    }
+
+    public void IncreaseZone(GameObject player)
+    {
+        StateManager playerStateManager = player.GetComponent<StateManager>();
+        playerStateManager.oldZone = playerStateManager.newZone;
+        playerStateManager.newZone = zoneNumber;
+    }
 }

@@ -16,6 +16,11 @@ public class StateManager : MonoBehaviour
     public GameObject myBody;
     public Text debugText;
 
+    public int oldZone;
+    public int newZone;
+    public int highestZone;
+    public bool wrongWay;
+
     public enum PlayerStance
     {
         None,
@@ -63,6 +68,41 @@ public class StateManager : MonoBehaviour
     void FixedUpdate()
     {
 
+    }
+
+    private void LateUpdate()
+    {
+        if (oldZone == 0 || oldZone != 0 && highestZone == 0)
+        {
+            if (newZone == 1)
+            {
+                highestZone = 1;
+            }
+            else
+            {
+                highestZone = 0;
+            }
+        }
+        if (((newZone - 1) <= highestZone) && (newZone > oldZone) && (oldZone != 0) && ((newZone) > highestZone))
+        {
+            highestZone = newZone;
+        }
+        if (oldZone > newZone)
+        {
+            wrongWay = true;
+            print("Ho shit wrong way bitch");
+        }
+        else
+        {
+            wrongWay = false;
+        }
+    }
+
+    public void ResetZones()
+    {
+        highestZone = 0;
+        newZone = 0;
+        oldZone = 0;
     }
 
     void Update()
@@ -130,7 +170,10 @@ public class StateManager : MonoBehaviour
            + "Player Stance       : " + GetPlayerStance().ToString() + "\n"
            + "Revolver Ammo       : " + myInventory.AmmoBackpack[1] + "/" + myInventory.AmmoBackpackMax[1] + "\n"
            + "Rifle Ammo       : " + myInventory.AmmoBackpack[2] + "/" + myInventory.AmmoBackpackMax[2] + "\n"
-           + "Shotgun Ammo       : " + myInventory.AmmoBackpack[3] + "/" + myInventory.AmmoBackpackMax[3] + "\n";
+           + "Shotgun Ammo       : " + myInventory.AmmoBackpack[3] + "/" + myInventory.AmmoBackpackMax[3] + "\n"
+           + "Old Zone       : " + oldZone + "\n"
+           + "Current Zone       : " + newZone + "\n"
+           + "Highest Zone       : " + highestZone + "\n";
 
         if (myInventory.equippedItemsList[0] != null)
         {
