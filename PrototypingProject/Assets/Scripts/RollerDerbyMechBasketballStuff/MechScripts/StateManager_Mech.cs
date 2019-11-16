@@ -42,7 +42,7 @@ public class StateManager_Mech : StateManager
         Death,
         //add a using weapon wheel state 
     }
-    public PlayerState myPlayerState = PlayerState.None;
+    new public PlayerState myPlayerState = PlayerState.None;
     float secondsSinceOnGround = 0.0f;
     float distanceToGround = 0.0f;
     float SecondsSinceSlide = 0.0f;

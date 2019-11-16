@@ -53,6 +53,7 @@ public class EquipmentInventory : ItemInventory
 
     public override void AddItemToInventory(ItemData item)
     {
+        Debug.Log("3");
         if (inventoryListSlotRestriction.Length > 0)
         {
             for (int i = 0; i < inventoryListSlotRestriction.Length; i++)
@@ -61,6 +62,7 @@ public class EquipmentInventory : ItemInventory
                 {
                     if (item.name == inventoryListSlotRestriction[i].name && inventoryList[i].name == emptyItem.name)
                     {
+                        Debug.Log("4");
                         ItemData clone = Instantiate(item.Clone());
                         inventoryList[i] = clone.gameObject;
                         break;
