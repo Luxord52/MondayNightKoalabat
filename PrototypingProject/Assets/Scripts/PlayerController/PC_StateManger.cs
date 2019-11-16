@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PC_StateMaanger : MonoBehaviour
+public class PC_StateManger : MonoBehaviour
 {
     // team variable Integer
     public int team;
@@ -28,24 +28,23 @@ public class PC_StateMaanger : MonoBehaviour
     }
     new public StanceState myStanceState = StanceState.None;
 
+    public PC_InputState myInput;
+    public PC_InputManager myInputManager;
+    public PC_Movement myMovement;
+
+
+    public Camera myCamera;
+
     Vector3 DesiredDirection;
-
-
-
     void Update()
     {
         // get the input from controller.
-        DesiredDirection = new Vector3(
-                   Input.GetAxis("joy" + joyNum + "Horizontal"),
-                   0.0f,
-                   Input.GetAxis("joy" + joyNum + "Vertical"));
-        DesiredDirection.Normalize();
+        myInput = myInputManager.GetCachesInputState();
 
-
-
-        // call movement code
+        // call movement code 
+        myMovement.MoveMe(myInput);
         // call look code
-        
+        myMovement.JoyLook(myInput, myCamera);
         // MovementState change
         // Stance State change
         // Action State change? 

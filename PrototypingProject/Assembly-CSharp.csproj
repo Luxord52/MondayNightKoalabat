@@ -63,7 +63,10 @@
      <Compile Include="Assets\Scripts\Destructable.cs" />
      <Compile Include="Assets\Scripts\GrapplingHookStolen.cs" />
      <Compile Include="Assets\Scripts\HookProjectile.cs" />
-     <Compile Include="Assets\Scripts\PlayerController\PC_StateMaanger.cs" />
+     <Compile Include="Assets\Scripts\PlayerController\PC_InputManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerController\PC_InputState.cs" />
+     <Compile Include="Assets\Scripts\PlayerController\PC_Movement.cs" />
+     <Compile Include="Assets\Scripts\PlayerController\PC_StateManger.cs" />
      <Compile Include="Assets\Scripts\RollerDerbyMechBasketballStuff\EquipmentInventory.cs" />
      <Compile Include="Assets\Scripts\RollerDerbyMechBasketballStuff\HardpointsManager.cs" />
      <Compile Include="Assets\Scripts\RollerDerbyMechBasketballStuff\ItemInventory.cs" />
