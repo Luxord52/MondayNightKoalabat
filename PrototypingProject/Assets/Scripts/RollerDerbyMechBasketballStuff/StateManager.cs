@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StateManager : MonoBehaviour
 {
-
+    public int team;
     public Rigidbody myRigidBody;
     public Camera myCamera;
     MovementScript myMovement;
