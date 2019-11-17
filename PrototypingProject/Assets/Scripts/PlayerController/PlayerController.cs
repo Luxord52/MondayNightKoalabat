@@ -13,8 +13,7 @@ public class PlayerController : MonoBehaviour
 
     //Player variables 
     float f_Speed;
-    float f_Acceleration = 50;
-    //Vector3 v_Velocity;
+    public float f_Acceleration = 50;
     public float MaxSpeed = 5;
     public float turnSpeed = 2;
     public float dragForce = 0.9f;
@@ -22,6 +21,12 @@ public class PlayerController : MonoBehaviour
     //Player referenced components
     public Rigidbody myRigidBody;
     public GameObject myBody;
+
+    // Zone Stuff
+    public int oldZone;
+    public int newZone;
+    public int highestZone;
+    public bool wrongWay;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +72,14 @@ public class PlayerController : MonoBehaviour
                     myRigidBody.AddForce(myBody.transform.TransformDirection(Vector3.forward) * f_Acceleration);
                 }
             }
+            if (i_Brake > 0.04)
+            {
+                if (f_Speed < MaxSpeed)
+                {
+                    myRigidBody.AddForce(myBody.transform.TransformDirection(-Vector3.forward) * f_Acceleration);
+
+                }
+            }
             /*
             else
             {
@@ -90,17 +103,58 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if (oldZone == 0 || oldZone != 0 && highestZone == 0)
+        {
+            if (newZone == 1)
+            {
+                highestZone = 1;
+            }
+            else
+            {
+                highestZone = 0;
+            }
+        }
+        if (((newZone - 1) <= highestZone) && (newZone > oldZone) && (oldZone != 0) && ((newZone) > highestZone))
+        {
+            highestZone = newZone;
+        }
+        if (oldZone > newZone)
+        {
+            wrongWay = true;
+            print("Ho shit wrong way bitch");
+        }
+        else
+        {
+            wrongWay = false;
+        }
+    }
+
+    public void ResetZones()
+    {
+        highestZone = 0;
+        newZone = 0;
+        oldZone = 0;
+    }
+
     private void OnTurning(InputValue value)
     {
         // recieves input from left joystick 
         i_Turning = value.Get<Vector2>();
 
-        Debug.Log("MOVING");
+       // Debug.Log("MOVING");
     }
     private void OnThrottle(InputValue axis)
     {
         i_Throttle = axis.Get<float>();
-        Debug.Log(i_Throttle);
+        //Debug.Log(i_Throttle);
+    }
+
+    private void OnBrake(InputValue axis)
+    {
+        i_Brake = axis.Get<float>();
+        //Debug.Log(i_Brake);
     }
 
 }
