@@ -65,7 +65,8 @@ public class MovementScript : MonoBehaviour
     public float bobbingAmount;
     float midpoint = 0.5f;
 
-
+    //Stolen code variables for Crosshair
+    public RectTransform crosshair;
 
     public void MoveMe(Rigidbody myRigidBody, Vector3 DesiredDirection)
     {
@@ -204,6 +205,14 @@ public class MovementScript : MonoBehaviour
             Vector3 _direction = (myCamera.transform.forward * 1000 - myGun.transform.position);
             Quaternion _lookRotation = Quaternion.LookRotation(_direction);
             myGun.transform.rotation = Quaternion.Slerp(myGun.transform.rotation, _lookRotation, Time.deltaTime * AimSpeed);
+        }
+        RaycastHit gunHit;
+        if (Physics.Raycast(myGun.transform.position + myGun.transform.forward, myGun.transform.forward, out gunHit, Mathf.Infinity))
+        {
+            if (gunHit.collider)
+            {
+                crosshair.position = myCamera.WorldToScreenPoint(gunHit.point);
+            }
         }
     }
 
