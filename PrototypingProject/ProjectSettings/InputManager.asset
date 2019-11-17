@@ -402,7 +402,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 3
     joyNum: 1
   - serializedVersion: 3
@@ -418,7 +418,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 3
     joyNum: 2
   - serializedVersion: 3
@@ -434,7 +434,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 3
     joyNum: 3
   - serializedVersion: 3
@@ -450,7 +450,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 3
     joyNum: 4
   - serializedVersion: 3
@@ -466,7 +466,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 4
     joyNum: 1
   - serializedVersion: 3
@@ -482,7 +482,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 4
     joyNum: 2
   - serializedVersion: 3
@@ -498,7 +498,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 4
     joyNum: 3
   - serializedVersion: 3
@@ -514,7 +514,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 4
     joyNum: 4
   - serializedVersion: 3
@@ -526,11 +526,11 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0
+    dead: 0.2
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 5
     joyNum: 1
   - serializedVersion: 3
@@ -546,7 +546,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 5
     joyNum: 2
   - serializedVersion: 3
@@ -562,7 +562,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 5
     joyNum: 3
   - serializedVersion: 3
@@ -578,7 +578,7 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 5
     joyNum: 4
   - serializedVersion: 3

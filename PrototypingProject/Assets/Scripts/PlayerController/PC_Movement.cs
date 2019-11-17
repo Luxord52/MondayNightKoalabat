@@ -7,10 +7,12 @@ public class PC_Movement : MonoBehaviour
     public float maxSpeed;
     public float myAcceleration;
     public Rigidbody myRigidBody;
+    public GameObject visualBody;
 
+    public float turnSpeed;
 
     //mouselook variables 
-    Vector3 rotation;
+    Vector2 rotation;
     public float lookSpeed;
     public float AimSpeed;
 
@@ -32,12 +34,13 @@ public class PC_Movement : MonoBehaviour
         {
             if (myRigidBody.velocity.magnitude < maxSpeed)
             {
-                myRigidBody.velocity = myRigidBody.velocity + DesiredDirection.normalized * myAcceleration;
+                myRigidBody.velocity = myRigidBody.velocity + visualBody.transform.TransformDirection(DesiredDirection.normalized) * myAcceleration;
             }
             else
             {
                 myRigidBody.velocity = DesiredDirection.normalized * maxSpeed;
             }
+            
         }
     }
     public void HeadBob(Rigidbody myRigidBody, Camera myCamera)
@@ -79,22 +82,33 @@ public class PC_Movement : MonoBehaviour
         myCamera.transform.localPosition = HeadHeight;
     }
 
+    public void BodyRotation(PC_InputState myInput, Camera myCamera)
+    {
+        float targetBodyRotY = myCamera.transform.eulerAngles.y;
+        float currentBodyRotY = visualBody.transform.eulerAngles.y;
+
+        float deltaAngle = Mathf.DeltaAngle(currentBodyRotY, targetBodyRotY);
+
+        currentBodyRotY += (deltaAngle) * turnSpeed * Time.deltaTime;
+        visualBody.transform.localRotation = Quaternion.Euler(
+            0.0f,
+            currentBodyRotY,
+            0.0f
+            );
+    }
+
+
     public void JoyLook(PC_InputState myInput,Camera myCamera)
     {
+        rotation.y += myInput.Get_RightJoystickHorizontal() * lookSpeed;
 
-        Vector3 currRotation;
-        Vector3 DesRotation;
-
-        
-        rotation.y += myInput.Get_RightJoystickHorizontal() * 100;
-        rotation.x += myInput.Get_RightJoystickVertical() * 100;
+        Debug.Log(myInput.Get_RightJoystickVertical().ToString());
+        rotation.x += myInput.Get_RightJoystickVertical() * lookSpeed; 
         rotation.x = Mathf.Clamp(rotation.x, -15f, 15f);
-        myCamera.transform.eulerAngles = (Vector2)rotation;// * lookSpeed;
+       // myCamera.transform.eulerAngles = (Vector2)rotation * lookSpeed;
+         //transform.eulerAngles = new Vector2(0,rotation.y)* lookSpeed;   
+         myCamera.transform.localRotation = Quaternion.Euler(rotation.x,rotation.y , 0);
 
-        Debug.Log(rotation.ToString());
-        // transform.eulerAngles = new Vector2(0,rotation.y)* lookSpeed;   
-        // myCamera.transform.localRotation = Quaternion.Euler(rotation.x * lookSpeed, 0, 0);
-        
     }
 
 }

@@ -45,6 +45,7 @@ public class PC_StateManger : MonoBehaviour
         myMovement.MoveMe(myInput);
         // call look code
         myMovement.JoyLook(myInput, myCamera);
+        myMovement.BodyRotation(myInput,myCamera);
         // MovementState change
         // Stance State change
         // Action State change? 

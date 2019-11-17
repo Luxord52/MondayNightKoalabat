@@ -13,7 +13,7 @@ public class WeaponPickup : ItemPickup
     {
         ItemInventory player = other.gameObject.GetComponent<ItemInventory>();
         //StateManager playerA = collision.gameObject.GetComponent<StateManager>();
-        Debug.Log("1");
+        //Debug.Log("1");
         if (player != null && inventoryItem.GetComponent<WeaponData>() != null)
         {
             
