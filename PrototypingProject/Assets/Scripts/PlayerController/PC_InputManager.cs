@@ -16,7 +16,7 @@ public class PC_InputManager : MonoBehaviour
     }
     void Update()
     {
-        //GetInput(myStateManager.joyNum);
+        GetInput(1);
     }
     void GetInput(int joyNum)
     {
