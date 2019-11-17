@@ -144,7 +144,7 @@ namespace HardShellStudios.CompleteControl
                     #endregion
 
                     // If opened it shows these details
-                    if (i < showFields.Length && EditorGUILayout.BeginFadeGroup(showFields[i].faded))
+                    //if (i < showFields.Length && EditorGUILayout.BeginFadeGroup(showFields[i].faded))
                     {
                         EditorGUILayout.BeginVertical(hStyles.DetailGroup());
 
@@ -211,10 +211,9 @@ namespace HardShellStudios.CompleteControl
                         myTarget.inputs[i].Sensitivity = EditorGUILayout.FloatField("Sensitivity", myTarget.inputs[i].Sensitivity);
 
                         EditorGUILayout.EndVertical();
-                        EditorGUILayout.EndFadeGroup();
+                     //   EditorGUILayout.EndFadeGroup();
                     }
                     // End of details.
-
                     EditorGUILayout.EndVertical();
                 }
 
