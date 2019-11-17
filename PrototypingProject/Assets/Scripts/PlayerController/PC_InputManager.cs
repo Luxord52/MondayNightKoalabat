@@ -8,7 +8,7 @@ public class PC_InputManager : MonoBehaviour
     PC_InputState CurrentInputState;
     PC_InputState CachedInputState;
     public Text TestingText;
-    public PC_StateManger myStateManager;
+    //public PC_StateManger myStateManager;
     void Start()
     {
         CurrentInputState = new PC_InputState();
@@ -16,7 +16,7 @@ public class PC_InputManager : MonoBehaviour
     }
     void Update()
     {
-        GetInput(myStateManager.joyNum);
+        GetInput(1);
     }
     void GetInput(int joyNum)
     {
