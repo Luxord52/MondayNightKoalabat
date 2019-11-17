@@ -30,6 +30,11 @@ public class PrepSceneLogic : MonoBehaviour
         }
     }
 
+    private void BeginRace()
+    {
+
+    }
+
     private void ReadyToStart()
     {
         uiLogic.ShowReadyQuery();
