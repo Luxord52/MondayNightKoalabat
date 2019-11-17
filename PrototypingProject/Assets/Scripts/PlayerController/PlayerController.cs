@@ -5,13 +5,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+    // player input variables 
     Vector2 i_Turning;
     float i_Throttle;
+    float i_Brake;
+
+    //Player variables 
     float f_Speed;
+    float f_Acceleration = 50;
+    //Vector3 v_Velocity;
     public float MaxSpeed = 5;
     public float turnSpeed = 2;
     public float dragForce = 0.9f;
-    public Rigidbody myBody;
+
+    //Player referenced components
+    public Rigidbody myRigidBody;
+    public GameObject myBody;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        //v_Velocity = myRigidBody.velocity;
+        //f_Speed = v_Velocity.magnitude;
         //Vector3 movement = new Vector3(i_Movement.x, 0, i_Movement.y) * moveSpeed * Time.deltaTime;
         //transform.Translate(movement);
 
@@ -46,24 +58,35 @@ public class PlayerController : MonoBehaviour
         }
         // gotta step on the gas Gas GAS
         {
+            f_Speed = myRigidBody.velocity.magnitude;
             if (i_Throttle > 0.04)
             {
                 if (f_Speed < MaxSpeed)
                 {
-                    f_Speed += i_Throttle * 5;
-                }
-                else
-                {
-                    f_Speed = MaxSpeed;
+                    // add force to rigid body, in foreward direction
+                    myRigidBody.AddForce(myBody.transform.TransformDirection(Vector3.forward) * f_Acceleration);
                 }
             }
+            /*
             else
             {
                 
                 f_Speed = f_Speed*(1 - dragForce);
                 Debug.Log(f_Speed);
             }
-            myBody.velocity = myBody.transform.TransformDirection(Vector3.forward) * f_Speed;
+            */
+            float clampedVelocityX = myRigidBody.velocity.x * (1.0f - dragForce);
+            clampedVelocityX = Mathf.Clamp(clampedVelocityX, -MaxSpeed, MaxSpeed);
+
+            float clampedVelocityZ = myRigidBody.velocity.z * (1.0f - dragForce);
+            clampedVelocityZ = Mathf.Clamp(clampedVelocityZ, -MaxSpeed, MaxSpeed);
+
+            myRigidBody.velocity = new Vector3(
+                clampedVelocityX,
+                myRigidBody.velocity.y,
+                clampedVelocityZ
+                );
+
         }
     }
 
