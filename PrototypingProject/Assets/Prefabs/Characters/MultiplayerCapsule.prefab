@@ -249,7 +249,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8185528957455704555
 MonoBehaviour:
@@ -295,8 +295,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee875042d6b104b4b9c2e5bbd28c1aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  f_Acceleration: 20
   MaxSpeed: 10
   turnSpeed: 2
-  dragForce: 0.1
+  dragForce: 0.001
   myRigidBody: {fileID: 8185528957455704554}
   myBody: {fileID: 8185528956433638839}
+  oldZone: 0
+  newZone: 0
+  highestZone: 0
+  wrongWay: 0
